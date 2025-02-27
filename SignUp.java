@@ -91,7 +91,7 @@ class SignUpForm extends JFrame {
         ButtonP = new JPanel(new GridLayout(2,3,30,5));
 
         UserSelection = new JPanel(new BorderLayout());
-        String[] Users = {"ISA Manager","Sales Persons","Inventory Officer"};
+        String[] Users = {"IS Manager","Sales Persons","Inventory Officer"};
         UserLabel = new JLabel("Registrating as a : ");
         UserType = new JComboBox<>(Users);
         UserSelection.add(UserLabel,BorderLayout.WEST);
