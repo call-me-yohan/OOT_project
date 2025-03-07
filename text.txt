@@ -1,0 +1,5 @@
+git init
+ git remote add origin https://github.com/call-me-yohan/OOT_project
+ git add .
+ git commit -m "Your commit message"
+ git push -u origin main
