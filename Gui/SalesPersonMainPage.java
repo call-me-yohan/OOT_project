@@ -55,7 +55,13 @@ class SalesPersonMainPageForm extends JFrame{
 }
 
 
+public class MoveToOrderPage implements ActionListener{
 
+    public void actionPerformed(ActionEvent ae){
+        PlaceOrderForm PlaceOrderPage = new PlaceOrderForm(SalesPersonMainPageForm.this,null);
+        setVisible(false);
+    }
+}
 
 public class StatusFilter implements ActionListener{
 
@@ -202,7 +208,7 @@ public class ComboBoxFilter implements ItemListener{
 
 private class handler implements ActionListener{
     public void actionPerformed(ActionEvent e) {
-        SignUpForm b = new SignUpForm();
+        SignUpForm LoginPage = new SignUpForm();
         dispose();
     }
 }
@@ -210,6 +216,7 @@ private class handler implements ActionListener{
 
     public SalesPersonMainPageForm(User A){
 
+        
         //javac -cp ".;mysql-connector-java-9.2.0.jar" Gui\SalesPersonMainPage.java (because of that damn driver, to compile)
 
         String url = "jdbc:mysql://localhost:3306/CTextile";
@@ -250,6 +257,7 @@ private class handler implements ActionListener{
         Logout = new JButton("Log out");
         Logout.addActionListener(new handler());
         PlaceOrd = new JButton("Place new Order");
+        PlaceOrd.addActionListener(new MoveToOrderPage());
         ViewReport = new JButton("View Reports");
         buttons.add(PlaceOrd);
         buttons.add(ViewReport);
@@ -337,6 +345,6 @@ private class handler implements ActionListener{
 
 class SalesPersonMainPage{
     public static void main(String[] args) {
-        SalesPersonMainPageForm a = new SalesPersonMainPageForm(null);
+        SalesPersonMainPageForm SalePersonPage = new SalesPersonMainPageForm(null);
     }
 }

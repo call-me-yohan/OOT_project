@@ -1,9 +1,13 @@
 package Gui;
 import Classes.*;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 class PlaceOrderForm extends JFrame{
+    private SalesPersonMainPageForm SalePersonPage; // reference to previous page
+
+
     private JLabel[] jl_item;
     private JTextField[] jt_Qty;
     private JButton[] jb_removeItem;
@@ -11,12 +15,27 @@ class PlaceOrderForm extends JFrame{
     private JLabel jl_selectItem,jl_selectCustomer,jl_selectPayment;
     private JTextField jt_custName,jt_dob,jt_PhoneNo,jt_CustAddress; // for customers
     private JLabel jl_custName,jl_dob,jl_PhoneNo,jl_CustAddress;
-    private JButton jb_placeOrder,jb_reset,jb_addItem;
+    private JButton jb_placeOrder,jb_Return,jb_addItem;
     private JComboBox jc_payment;
     private JPanel Main,jp_Customer,jp_item;
 
-    PlaceOrderForm(User U){
+
+    //Event listeners
+
+    public class ReturnToMainPage implements ActionListener{
+
+        public void actionPerformed(ActionEvent ae){
+            SalePersonPage.setVisible(true);
+            dispose();
+        }
+    }
+
+
+
+
+    PlaceOrderForm(SalesPersonMainPageForm SalePersonPage,User U){
         super("Place a New Order");
+        this.SalePersonPage = SalePersonPage;
         setSize(1000,1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setLocationRelativeTo(null);
@@ -51,8 +70,9 @@ class PlaceOrderForm extends JFrame{
         JPanel resizebutton = new JPanel(new GridLayout(3,1,10,10));
         jb_addItem = new JButton("Add Item to list");
         resizebutton.add(jb_addItem);
-        jb_reset = new JButton("Reset");
-        resizebutton.add(jb_reset);
+        jb_Return = new JButton("Return");
+        jb_Return.addActionListener(new ReturnToMainPage());
+        resizebutton.add(jb_Return);
         jb_placeOrder = new JButton("Confirm Order");
         resizebutton.add(jb_placeOrder);
 
@@ -96,6 +116,6 @@ class PlaceOrderForm extends JFrame{
 
 public class PlaceOrder {
     public static void main(String[] args) {
-        PlaceOrderForm a = new PlaceOrderForm(null);
+        PlaceOrderForm PlaceOrderPage = new PlaceOrderForm(null,null);
     }
 }
