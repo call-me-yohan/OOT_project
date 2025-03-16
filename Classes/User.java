@@ -1,6 +1,6 @@
 package Classes;
 
-class User{
+public class User{
 	private String username;
 	private String password;
 	private String usertype;
