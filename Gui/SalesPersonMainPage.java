@@ -7,7 +7,7 @@ import javax.swing.*;
 
 
 class SalesPersonMainPageForm extends JFrame{
-
+    private User CurrUser;
     private JLabel WelcomeMsg, FilterText;
     private JLabel[] Orders;
     private JButton PlaceOrd, ViewReport,Logout;
@@ -58,7 +58,7 @@ class SalesPersonMainPageForm extends JFrame{
 public class MoveToOrderPage implements ActionListener{
 
     public void actionPerformed(ActionEvent ae){
-        PlaceOrderForm PlaceOrderPage = new PlaceOrderForm(SalesPersonMainPageForm.this,null);
+        PlaceOrderForm PlaceOrderPage = new PlaceOrderForm(SalesPersonMainPageForm.this,CurrUser);
         setVisible(false);
     }
 }
@@ -206,9 +206,10 @@ public class ComboBoxFilter implements ItemListener{
 
 }
 
-private class handler implements ActionListener{
+private class LogHandler implements ActionListener{
     public void actionPerformed(ActionEvent e) {
-        SignUpForm LoginPage = new SignUpForm();
+        LoginPage CurrLoginPage = new LoginPage();
+        CurrLoginPage.setVisible(true);
         dispose();
     }
 }
@@ -216,8 +217,9 @@ private class handler implements ActionListener{
 
     public SalesPersonMainPageForm(User A){
 
-        
+        CurrUser = A;
         //javac -cp ".;mysql-connector-java-9.2.0.jar" Gui\SalesPersonMainPage.java (because of that damn driver, to compile)
+        
 
         String url = "jdbc:mysql://localhost:3306/CTextile";
         String user = "Yohan";
@@ -237,25 +239,26 @@ private class handler implements ActionListener{
             e.printStackTrace();
         }
         
-       
-
+        
         setTitle("Main Page");
         setSize(1000, 1000); // Set frame size
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close the application on close
         setLocationRelativeTo(null);
         setLayout(new FlowLayout(FlowLayout.CENTER));
+        ImageIcon icon = new ImageIcon("icon.png");
+        setIconImage(icon.getImage());
 
         
 
         main = new JPanel(new GridLayout(4,1));
 
-        WelcomeMsg = new JLabel("Welcome " + Username);
+        WelcomeMsg = new JLabel("Welcome " + A.getUsername());
         WelcomeMsg.setFont(new Font("Verdana", Font.PLAIN, 30));    
         main.add(WelcomeMsg);
 
         buttons = new JPanel(new GridLayout(3,1,10,10));
         Logout = new JButton("Log out");
-        Logout.addActionListener(new handler());
+        Logout.addActionListener(new LogHandler());
         PlaceOrd = new JButton("Place new Order");
         PlaceOrd.addActionListener(new MoveToOrderPage());
         ViewReport = new JButton("View Reports");
@@ -334,7 +337,7 @@ private class handler implements ActionListener{
 
 
         add(main);
-        add(new JLabel("          "));
+        add(new JLabel("      "));
         add(buttons);
         setVisible(true);
 
@@ -345,6 +348,6 @@ private class handler implements ActionListener{
 
 class SalesPersonMainPage{
     public static void main(String[] args) {
-        SalesPersonMainPageForm SalePersonPage = new SalesPersonMainPageForm(null);
+       
     }
 }

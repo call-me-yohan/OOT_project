@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.Arrays;
+
 public class ManMadeFiber extends Item {
 
     String[] properties;
@@ -11,6 +13,23 @@ public class ManMadeFiber extends Item {
         
         properties = props;
         LifeSpan = lifeSpan;
+    }
+
+    public String[] getProperties() {
+        return Arrays.copyOf(properties, properties.length); // Defensive Copy
+    }
+
+    public int getLifeSpan() {
+        return LifeSpan;
+    }
+
+    // Setters
+    public void setProperties(String[] properties) {
+        this.properties = Arrays.copyOf(properties, properties.length); // Defensive Copy
+    }
+
+    public void setLifeSpan(int lifeSpan) {
+        this.LifeSpan = lifeSpan;
     }
 
 }

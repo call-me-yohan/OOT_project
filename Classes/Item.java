@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.Arrays;
+
 public class Item {
     private String itemName;
     private int itemId;
@@ -20,4 +22,37 @@ public class Item {
         this.texture = texture;
         this.qtyinStock = qtyinStock;
     }
+     public String getItemName() {
+        return itemName;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public double getCostPerUnit() {
+        return costperUnit;
+    }
+
+    public String[] getColours() {
+        return Arrays.copyOf(colours, colours.length); // Defensive Copy
+    }
+
+    public String getItemType() {
+        return itemType;
+    }
+
+    public String[] getHazardPrecautions() {
+        return Arrays.copyOf(hazardPrecautions, hazardPrecautions.length); // Defensive Copy
+    }
+
+    public String getTexture() {
+        return texture;
+    }
+
+    public int getQtyInStock() {
+        return qtyinStock;
+    }
+
+
 }

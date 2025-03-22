@@ -15,5 +15,30 @@ public class NaturalFiber extends Item {
 
         Source = src;
     }
+
+    public String getCareInstructions() {
+        return CareInstructions;
+    }
+
+    public int getLifeSpan() {
+        return lifeSpan;
+    }
+
+    public String getSource() {
+        return Source;
+    }
+
+    // Setters
+    public void setCareInstructions(String careInstructions) {
+        this.CareInstructions = careInstructions;
+    }
+
+    public void setLifeSpan(int lifeSpan) {
+        this.lifeSpan = lifeSpan;
+    }
+
+    public void setSource(String source) {
+        this.Source = source;
+    }
     
 }
